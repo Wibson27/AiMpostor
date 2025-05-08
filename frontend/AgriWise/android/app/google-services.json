@@ -1,0 +1,118 @@
+{
+  "project_info": {
+    "project_number": "202387659163",
+    "project_id": "ai-mposter",
+    "storage_bucket": "ai-mposter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202387659163:android:6d415d73f048e95825a93e",
+        "android_client_info": {
+          "package_name": "com.example.agriwise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202387659163-cbi1457uhbl054lm37jbmm8g7asn9b54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG75gTeMFz6vnOIkyy_PPpx9JZCUL8TWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202387659163-cbi1457uhbl054lm37jbmm8g7asn9b54.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "202387659163-g28doo5me9nujse4l1q2q6jme51fovje.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aimpostor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202387659163:android:112a75c3554d556f25a93e",
+        "android_client_info": {
+          "package_name": "com.example.aimpostor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202387659163-cbi1457uhbl054lm37jbmm8g7asn9b54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG75gTeMFz6vnOIkyy_PPpx9JZCUL8TWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202387659163-cbi1457uhbl054lm37jbmm8g7asn9b54.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "202387659163-g28doo5me9nujse4l1q2q6jme51fovje.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aimpostor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202387659163:android:33014a057cbd6f4a25a93e",
+        "android_client_info": {
+          "package_name": "com.example.my_first_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202387659163-cbi1457uhbl054lm37jbmm8g7asn9b54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG75gTeMFz6vnOIkyy_PPpx9JZCUL8TWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202387659163-cbi1457uhbl054lm37jbmm8g7asn9b54.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "202387659163-g28doo5me9nujse4l1q2q6jme51fovje.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aimpostor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
