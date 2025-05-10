@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GEMINI_API_KEY } from "./envConfig.js";
 import diseaseSchema from "../schemas/detectionResponseSchema.js";
-
+import seedSchema from "../schemas/seedQualityResponseSchema.js";
 /**
  * Instance of Google Generative AI initialized with API key
  * @type {GoogleGenerativeAI}
@@ -20,7 +20,7 @@ const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
  * @param {string|null} [systemInstruction=null] - Optional system instruction to guide the model's behavior.
  * @returns {Object} - An instance of the generative AI model.
  */
-const getmModelInstance = (systemInstruction = null) => {
+const getModelInstance = (systemInstruction = null) => {
   return genAI.getGenerativeModel({
     model: "gemini-2.0-flash",
     systemInstruction,
@@ -34,11 +34,18 @@ const getmModelInstance = (systemInstruction = null) => {
  * @property {string} description - Description of what the function does
  * @property {Object} parameters - JSON schema defining function parameters
  */
-const structuredFunction = {
+const diseasePredStructureFun = {
   name: "predict_plant_disease",
   description:
     "Predicts plant diseases from an image and provides mitigation steps.",
   parameters: diseaseSchema,
+};
+
+const seedStructureFun = {
+  name: "predict_seed_quality",
+  description:
+    "Predicts seed quality from an image and provides recommendations.",
+  parameters: seedSchema,
 };
 
 /**
@@ -46,8 +53,12 @@ const structuredFunction = {
  * @type {Object}
  * @property {Array} functionDeclarations - List of available functions for the model
  */
-const toolConfig = {
-  functionDeclarations: [structuredFunction],
+const disToolConfig = {
+  functionDeclarations: [diseasePredStructureFun],
+};
+
+const seedToolConfig = {
+  functionDeclarations: [seedStructureFun],
 };
 
 /**
@@ -98,8 +109,9 @@ const chatbotSysInstruction = `You are an expert agricultural assistant designed
       `;
 
 export {
-  getmModelInstance,
-  toolConfig,
+  getModelInstance,
+  disToolConfig,
+  seedToolConfig,
   generationConfig,
   safetySettings,
   chatbotSysInstruction,

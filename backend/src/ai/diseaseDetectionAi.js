@@ -1,22 +1,22 @@
 import Ajv from "ajv";
 import diseaseSchema from "../schemas/detectionResponseSchema.js";
 import {
-  getmModelInstance,
+  getModelInstance,
   generationConfig,
   safetySettings,
-  toolConfig,
+  disToolConfig,
   chatbotSysInstruction,
 } from "../config/genAiConfig.js";
 
 // Function to generate a structured response from Gemini
-async function generateDiseasePrediction(imageContent, previousMessages = []) {
-  const model = getmModelInstance();
+async function generateDiseasePrediction(imageContent) {
+  const model = getModelInstance();
   const ModelConfig = generationConfig();
   const chat = model.startChat({
     ...ModelConfig,
     safetySettings,
-    tools: [toolConfig],
-    history: previousMessages, // Use previous messages for chat history
+    tools: [disToolConfig],
+    // history: previousMessages, // Use previous messages for chat history
   });
 
   const prompt = `You are an expert plant pathologist specializing in identifying plant diseases from images. You must analyze the provided image and use the 'predict_plant_disease' tool to provide your analysis. DO NOT generate the JSON response directly. YOU MUST use the provided tool function.
@@ -36,10 +36,8 @@ If the image does not contain a plant, respond with a message explaining that yo
     const response = result.response;
 
     if (response.candidates && response.candidates.length > 0) {
-      const content = response.candidates[0].content;
-
-      if (content.parts && content.parts.length > 0) {
-        const functionCall = response.functionCalls();
+      const functionCall = response.functionCalls();
+      if (functionCall && functionCall.length > 0) {
         if (functionCall[0]) {
           const functionName = functionCall[0].name;
           const argumentsData = functionCall[0].args;
@@ -61,14 +59,18 @@ If the image does not contain a plant, respond with a message explaining that yo
               return { error: "Invalid response format. Please try again." }; // Farmer-friendly error
             }
           }
-        } else {
-          // If no function call, assume it's the "not a plant" response
-          return { message: content.parts[0].text };
         }
+        //  else {
+        //   // If no function call, assume it's the "not a plant" response
+        //   return { message: content.parts[0].text };
+        // }
       }
     }
 
-    return { message: "I couldn't analyze the image. Please try again." }; // Generic fallback
+    return {
+      message:
+        "I couldn't analyze the image. Please ensure you upload a clear image that contains a plant and try again.",
+    }; // Descriptive fallback
   } catch (error) {
     console.error("Error generating response:", error);
     return {
@@ -79,7 +81,7 @@ If the image does not contain a plant, respond with a message explaining that yo
 }
 
 async function generateContentResponse(previousMessages, message) {
-  const model = getmModelInstance(chatbotSysInstruction);
+  const model = getModelInstance(chatbotSysInstruction);
   const ModelConfig = generationConfig(0.6, 1000);
   const chat = model.startChat({
     ...ModelConfig,

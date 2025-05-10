@@ -35,4 +35,5 @@ const diseaseSchema = {
     "symptomsObserved",
   ],
 };
+
 export default diseaseSchema;
